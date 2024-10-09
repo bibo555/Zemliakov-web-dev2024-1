@@ -1,20 +1,20 @@
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100%;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
-    max-width: 800px; 
-    margin: 0 ; 
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-    text-align: left; 
-    margin-bottom: 20px;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    text-align: left;
 }
 
 header h1 {
@@ -22,6 +22,7 @@ header h1 {
     font-weight: bold;
 }
 
+/* Базовые стили для навигации */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -34,66 +35,33 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: black;
+    color: black; /* Обычный цвет текста */
     font-weight: bold;
+    padding: 5px 10px; /* Добавим небольшие отступы */
+    transition: color 0.3s ease;
 }
 
-.image-section {
-    text-align: left; 
+/* Стили для hover-состояния */
+nav ul li a:hover {
+    color: red; /* Только цвет текста меняется на красный */
 }
 
-.main-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
+/* Стили для активного пункта */
+nav ul li a.active {
+    color: red; /* Цвет текста для активной страницы */
 }
 
-.about {
-    margin-bottom: 20px;
-}
-
-.about h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.advantages h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.advantages ul {
-    list-style-type: disc;
-    padding-left: 20px; 
-    margin-bottom: 20px;
-}
-
-.top-dishes {
-    margin-bottom: 20px;
-}
-
-.top-dishes h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table th, table td {
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
+main {
+    flex: 1;
+    padding: 20px;
 }
 
 footer {
-    background-color: black; /* Черный фон */
-    color: white; /* Белый текст */
-    text-align: left; /* Выровнять текст по левому краю */
-    padding: 20px; /* Отступы внутри блока */
-    font-size: 0.9em; /* Размер текста */
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
