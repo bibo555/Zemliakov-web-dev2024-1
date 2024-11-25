@@ -1,0 +1,326 @@
+/* Основные стили */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    text-align: left;
+}
+
+header h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Стили навигации */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: red; /* Цвет текста при наведении */
+}
+
+nav ul li a.active {
+    color: red; /* Цвет текста для активной страницы */
+}
+
+/* Основные стили для секций */
+section > h2 {
+    text-align: center;
+}
+
+.lunch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
+.lunch-grid {
+    display: flex;
+    flex-wrap: wrap; /* Если элементов будет больше, они перейдут на новую строку */
+    justify-content: center; /* Центрирование всех элементов */
+    gap: 250px ; /* Отступы между комбо */
+    
+}
+
+.lunch-option {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Отступы между элементами в одном комбо */
+ 
+ 
+    padding: 10px;
+}
+
+.dishes1 {
+    display: flex;
+    flex-direction: column; /* Выстраивает содержимое в колонку */
+    align-items: center; /* Центрирует элементы по горизонтали */
+    text-align: center; /* Центрует текст под изображением */
+}
+
+.dishes1 img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease;
+    margin: 0; /* Убираем отступы у изображения */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.dishes1 :hover{
+    transform: translateY(-10px) scale(1.1);
+}
+
+.dishes1 p {
+    margin-top: 5px; /* Отступ между изображением и текстом */
+    font-size: 14px; /* Размер текста */
+    text-align: center; /* Центрует текст */
+}
+
+
+
+/* Сетки для секций с блюдами */
+.soup-section > .dish-grid,
+.main-dishes-section > .dish-grid,
+.drink-section > .dish-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+    gap: 10px; /* Отступы между элементами */
+}
+
+/* Стилизация карточек блюд */
+.dish-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.dish-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Стили для изображений блюд */
+.dish-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Стили для текста */
+.dish-info {
+    text-align: center;
+}
+
+.dish-info .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dish-info .price {
+    font-size: 16px;
+    color: tomato;
+}
+
+.dish-info .weight {
+    color: #888;
+}
+
+/* Стили для кнопки добавления */
+.add-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #f1eee9;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: grey;
+    color: white;
+}
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    z-index: 1000;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.notification button {
+    margin-top: 15px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.notification button:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+/* Адаптивность */
+@media (max-width: 800px) {
+    .soup-section > .dish-grid,
+    .main-dishes-section > .dish-grid,
+    .drink-section > .dish-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .soup-section > .dish-grid,
+    .main-dishes-section > .dish-grid,
+    .drink-section > .dish-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.order-form-container {
+    margin: 140px 140px;
+    padding: 20px; 
+    width: auto; 
+    max-width: 95%; 
+    border: none;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+
+
+.order-form-container h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-block {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form-section {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label input {
+    margin-right: 5px;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button[type="submit"] {
+    background-color: white;
+    color: black;
+}
+
+button[type="reset"] {
+    background-color: white;
+    color: black;
+}
+
+footer {
+    background-color: black; /* Задает черный цвет фона */
+    color: white; /* Белый цвет текста для контраста */
+    padding: 20px; /* Внутренние отступы для визуального удобства */
+    text-align: center; /* Выравнивание текста по центру */
+}
