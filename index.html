@@ -3,92 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Construct</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Интернет-магазин</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Применение шрифта к телу страницы */
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-    </style>
 </head>
 <body>
-
     <header>
-        <h1>Food Construct</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">О нас</a></li>
-                <li><a href="lunch.html">Собрать ланч</a></li>
-                <li><a href="#">Заказы</a></li>
-                <li><a href="#footer">Контакты</a></li> <!-- Якорная ссылка к футеру -->
-            </ul>
-        </nav>
+        <div class="logo">
+            <img src="https://hh.ru/employer-logo/6082962.jpeg" alt="logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Введите запрос">
+            <button>Найти</button>
+        </div>
+        <div class="icons">
+            <a href="cor.html">🛒</a>
+            <a href="profile.html">👤</a>
+        </div>
     </header>
 
-    <main>
-        <section class="about">
-            <h2>О нас</h2>
-            <img src="https://static22.tgcnt.ru/posts/_0/71/710e1ff815601da457ccf74a03e9ea3a.jpg" alt="Еда" class="main-image">
-            <p>Food Construct - доставка бизнес-ланчей в Москве. Мы привезем вам горячую вкусную еду в любую точку города к назначенному времени.</p>
-        </section>
+    <div class="notifications" id="notifications" style="display: none;">
+        <!-- Всплывающие уведомления -->
+    </div>
 
-        <section class="advantages">
-            <h2>Преимущества Food Construct</h2>
-            <ul>
-                <li>Привозим обед к назначенному времени без опозданий</li>
-                <li>Надежно упаковываем блюда в удобные контейнеры бесплатно</li>
-                <li>Доставляем ланчи весь день с 7:00 до 23:00</li>
-            </ul>
-        </section>
+    <div class="container">
+        <aside class="sidebar">
+            <form id="categoryForm">
+                <!-- Здесь категории будут подгружаться -->
+                <div id="categoryContainer">
+                    <h3>Категории</h3>
+                </div>
+                <div class="categori">
+                <label><input type="checkbox" id="checkbox1" value="Фильтр 1"> Бытовая химия</label>
+    <label><input type="checkbox" id="checkbox2" value="Фильтр 2"> Еда</label>
+    <label><input type="checkbox" id="checkbox3" value="Фильтр 3"> Спорт </label>
+    <label><input type="checkbox" id="checkbox4" value="Фильтр 4"> Товары для дома</label>
+    <label><input type="checkbox" id="checkbox5" value="Фильтр 5"> Электроника</label>
+                </div>
+                <h3>Стоимость</h3>
+                <label>От: <input type="number" min="0" value="100" id="minPrice"></label>
+                <label>До: <input type="number" min="0" value="5000" id="maxPrice"></label>
+        
+                <label><input type="checkbox" value="Только товары со скидками" id="discountOnly"> Только товары со скидками</label>
+        
+                <button type="submit">Применить</button>
+            </form>
+        </aside>
 
-        <!-- Блок с самыми популярными блюдами -->
-        <section class="top-dishes">
-            <h2>Топ-5 популярных блюд</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Название</th>
-                        <th>Кол-во заказов в неделю</th>
-                        <th>Цена</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Лазанья</td>
-                        <td>185</td>
-                        <td>385₽</td>
-                    </tr>
-                    <tr>
-                        <td>Том Ям с креветками</td>
-                        <td>161</td>
-                        <td>365₽</td>
-                    </tr>
-                    <tr>
-                        <td>Норвежский суп</td>
-                        <td>144</td>
-                        <td>270₽</td>
-                    </tr>
-                    <tr>
-                        <td>Жареная картошка с грибами</td>
-                        <td>132</td>
-                        <td>150₽</td>
-                    </tr>
-                    <tr>
-                        <td>Котлеты из курицы с картофельным пюре</td>
-                        <td>128</td>
-                        <td>225₽</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+        <main class="catalog">
+            <div class="header">
+                <h2>Каталог</h2>
+                <select id="sortSelect">
+                    <option value="rating-desc">По убыванию рейтинга</option>
+                    <option value="rating-asc">По возрастанию рейтинга</option>
+                    <option value="price-desc">По убыванию цены</option>
+                    <option value="price-asc">По возрастанию цены</option>
+                </select>
+            </div>
 
-    <!-- Футер с контактными данными -->
-    <footer id="footer">
-        <p>Позвоните нам: +7-000-000-00-00</p>
+            <!-- Контейнер для товаров -->
+            <div id="productGrid" class="goods-container">
+                <!-- Товары будут загружаться сюда -->
+            </div>
+
+            <!-- Кнопка для подгрузки товаров -->
+            <button id="loadMoreBtn" style="margin-top: 10px;">Загрузить ещё</button>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Donked | Контакты: info@shop.com</p>
     </footer>
 
+    <script src="index.js"></script>
 </body>
 </html>

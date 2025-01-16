@@ -1,67 +1,418 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    min-height: 100%;
-}
-
+/* Общие стили */
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Делает высоту страницы на всю высоту экрана */
 }
+
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     background-color: white;
     color: black;
-    padding: 20px;
-    text-align: left;
 }
 
-header h1 {
-    font-size: 2em;
-    font-weight: bold;
+header .logo {
+    width: 120px;
+    height: 60px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+}
+header .logo img{
+    width: 70%;
+    height: 70%;
 }
 
-/* Базовые стили для навигации */
-nav ul {
-    list-style-type: none;
-    padding: 0;
+header .search-bar {
+    flex-grow: 1;
+    margin: 0 300px;
+    display: flex;
+    align-items: center;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 15px;
+header .search-bar input {
+    width: 70%;
+    padding: 5px;
+    font-size: 1em;
+    margin-right: 200px;
+    
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: black; /* Обычный цвет текста */
-    font-weight: bold;
-    padding: 5px 10px; /* Добавим небольшие отступы */
-    transition: color 0.3s ease;
+header .search-bar button {
+    padding: 5px 14px;
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-/* Стили для hover-состояния */
-nav ul li a:hover {
-    color: red; /* Только цвет текста меняется на красный */
+header .icons {
+    display: flex;
+    gap: 10px;
 }
 
-/* Стили для активного пункта */
-nav ul li a.active {
-    color: red; /* Цвет текста для активной страницы */
-}
-
-main {
+.container {
+    display: flex;
     flex: 1;
     padding: 20px;
 }
+.notifications{
+    text-align: left;
+    background-color: aquamarine;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
+.notifications button{
+    border: none;
+    background-color: aquamarine;
+    padding-left: 1550px;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.categori input[type="checkbox"]:checked{
+    background-color: black;
+}
+
+.sidebar input[type="number"] {
+    width: 80px; /* Ширина полей */
+    height: 35px; /* Высота полей */
+    padding: 5px;
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 6px; /* Закругленные углы */
+    text-align: center; /* Выравнивание текста по центру */
+    font-size: 14px; /* Размер шрифта */
+    position: relative;
+    
+}
+
+/* Убираем стандартные стрелки в Chrome, Safari, Edge */
+.sidebar input[type="number"]::-webkit-inner-spin-button, 
+.sidebar input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Добавляем кастомные стрелки для числовых полей */
+.sidebar input[type="number"]::after,
+.sidebar input[type="number"]::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: solid #ccc;
+    border-width: 2px 2px 0 0;
+    cursor: pointer;
+    right: 10px; /* Расположение справа */
+    transition: border-color 0.3s;
+}
+
+.sidebar input[type="number"]::before {
+    transform: rotate(135deg); /* Нижняя стрелка */
+    top: 25%;
+}
+
+.sidebar input[type="number"]::after {
+    transform: rotate(-45deg); /* Верхняя стрелка */
+    top: 55%;
+}
+
+.sidebar input[type="number"]:hover::after,
+.sidebar input[type="number"]:hover::before {
+    border-color: #666; /* Изменение цвета стрелок при наведении */
+}
+
+.sidebar button {
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.catalog {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.catalog .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.catalog .header select {
+    padding: 5px;
+}
+
+.catalog .goods-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 карточки в одном ряду */
+    gap: 10px; /* Отступы между карточками */
+    width: 100%;
+    box-sizing: border-box; /* Учитываем отступы и рамки в ширине */
+}
+
+/* Каждая карточка */
+.product-card {
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 350px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Скрывает всё, что выходит за границы карточки */
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    overflow: hidden; /* Скрывает избыточный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце, если текст слишком длинный */
+    white-space: nowrap; /* Убирает перенос текста на новую строку */
+    max-width: 100%; /* Гарантирует, что текст не выйдет за пределы карточки */
+    text-align: center; /* Центрирует текст внутри карточки */
+}
+
+.product-card .rating,
+.product-card .price {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0;
+    text-align: center; /* Центрируем текст внутри карточки */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.product-card img {
+    max-width: 100%; /* Ограничиваем ширину изображения пределами карточки */
+    max-height: 200px; /* Фиксируем максимальную высоту */
+    object-fit: contain; /* Сохраняем пропорции изображения */
+    margin: 0 auto; /* Центрируем изображение */
+    display: block; /* Убираем лишние отступы */
+}
+.price-original {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.price-discount {
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.discount-percent {
+    color: #d32f2f;
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+
+.product-card button {
+    margin-top: auto;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 80%; /* Делаем кнопку более узкой и эстетичной */
+    text-align: center;
+}
+
+#loadMoreBtn {
+    display: block; /* Делает кнопку блочным элементом */
+    width: 93%; /* Растягивает кнопку на всю ширину родительского контейнера */
+    padding: 15px; /* Увеличивает внутренние отступы для более удобного клика */
+    background-color: gray; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убирает рамку */
+    font-size: 16px; /* Увеличивает размер текста */
+    cursor: pointer; /* Указывает, что элемент кликабелен */
+    border-radius: 0%; /* Убирает скругление краёв */
+    text-align: center; /* Центрирует текст внутри кнопки */
+    box-sizing: border-box; /* Гарантирует, что ширина учитывает padding и border */
+}
+
+
+#suggestionsBox {
+    position: absolute; /* Ключевой момент: фиксируем элемент относительно страницы */
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+    
+
 
 footer {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    text-align: left;
+    text-align: center;
+    padding: 10px;
+    color: black;
     position: relative;
-    bottom: 0;
-    width: 100%;
+    margin-top: auto; /* Это заставит футер всегда быть внизу */
 }
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    header .logo img {
+        width: 50%;
+    }
+
+    header .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+
+    header .search-bar input {
+        width: 80%;
+    }
+
+    header .search-bar button {
+        margin-left: 10px;
+    }
+
+    header .icons {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .notifications {
+        font-size: 1.2em;
+        padding-left: 10px;
+        justify-content: flex-start;
+    }
+
+    .notifications button {
+        margin-left: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    .catalog .goods-container {
+        grid-template-columns: 1fr 1fr; /* 2 карточки в одном ряду */
+    }
+
+    .product-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .catalog .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #loadMoreBtn {
+        width: 100%;
+    }
+
+    footer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .sidebar {
+        padding: 5px;
+    }
+
+    .catalog .goods-container {
+        grid-template-columns: 1fr; /* 1 карточка в одном ряду */
+    }
+
+    .product-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .notifications {
+        font-size: 1em;
+        padding-left: 5px;
+    }
+
+    header .search-bar input {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .form-section {
+        flex-direction: column;
+    }
+
+    .left-fields,
+    .right-fields {
+        width: 100%;
+    }
+
+    .sidebar input[type="number"] {
+        width: 100%; /* Сделать поля ввода чисел во всю ширину */
+    }
+
+    .sidebar button {
+        width: 100%; /* Кнопки в сайдбаре на мобильных устройствах */
+    }
+}
+

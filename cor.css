@@ -1,0 +1,460 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
+
+header .logo {
+    width: 120px;
+    height: 60px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+header .logo img {
+    width: 70%;
+    height: 70%;
+}
+header .icons a {
+    margin-left: 10px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+}
+.notifications {
+    position: relative; /* Устанавливаем контекст позиционирования для кнопки */
+    display: none; /* Расположение элементов в строку */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    justify-content: space-between; /* Отступы между текстом и кнопкой */
+    padding: 10px 15px; /* Внутренние отступы */
+    background-color: aquamarine; /* Цвет фона */
+    border: 1px solid black; /* Цвет рамки */
+    border-radius: 5px; /* Закруглённые углы */
+    width:80%; /* Ограничение по ширине */
+    box-sizing: border-box; /* Учитываем padding в ширину */
+    margin: 10px auto; /* Центрирование на странице */
+    flex-wrap: nowrap;
+}
+
+
+/* Текст уведомления */
+.notification-message {
+    background-color: aquamarine;
+    flex-grow: 1; /* Текст растягивается, занимая всё доступное пространство */
+    margin-right: 10px; /* Отступ от кнопки */
+    overflow: hidden; /* Прячем лишний текст, если он слишком длинный */
+    white-space: nowrap; /* Убираем перенос строки */
+    text-overflow: ellipsis; /* Добавляем троеточие для длинного текста */
+    max-width: calc(100% - 200px); /* Учитывайте ширину кнопки */
+}
+
+/* Кнопка закрытия уведомления */
+.close-btn {
+    position: absolute; /* Кнопка будет позиционироваться внутри уведомления */
+    right: 10px;
+    background: none; /* Убираем фон */
+    border: none; /* Убираем границы */
+    font-size: 18px; /* Размер шрифта */
+    cursor: pointer; /* Указываем, что кнопка кликабельна */
+    color: #721c24; /* Цвет текста кнопки */
+    padding: 5px; /* Отступ */
+    line-height: 1; /* Высота строки */
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cart-items2 h2 {
+    position: sticky; /* Фиксируем заголовок при прокрутке */
+    top: 0; /* Расстояние от верхнего края контейнера */
+    background-color: #fff; /* Задаём фон, чтобы текст был читаемым */
+    padding: 10px; /* Отступы для лучшего визуального восприятия */
+    z-index: 10; /* Устанавливаем приоритет отображения */
+    border-bottom: 1px solid black; /* Линия под заголовком для разделения */
+}
+
+
+.cart-items {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+
+
+
+.cart-items {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос на новую строку */
+    gap: 16px; /* Отступы между карточками */
+    justify-content: space-between; /* Равномерное распределение карточек */
+    border: none;
+}
+
+.cart-item {
+    flex: 1 1 calc(33.333% - 16px); /* Ширина 1/3 контейнера с учетом отступов */
+    box-sizing: border-box; /* Учитываем отступы и границы */
+    border: 1px solid black; /* Граница карточки */
+    border-radius: 8px; /* Закругление углов */
+    padding: 16px; /* Внутренние отступы */
+    background-color: #f9f9f9; /* Цвет фона */
+    text-align: center; /* Выравнивание текста по центру */
+    width: 10%;
+}
+
+.cart-item img {
+    max-width: 100%; /* Ограничиваем изображение шириной карточки */
+    height: auto; /* Сохраняем пропорции */
+    border-radius: 4px; /* Закругленные углы изображения */
+    margin-bottom: 8px; /* Отступ под изображением */
+}
+
+.cart-item h3 {
+    font-size: 1.2rem; /* Размер заголовка */
+    margin: 8px 0; /* Отступы сверху и снизу */
+}
+
+.cart-item p {
+    font-size: 1rem; /* Размер текста */
+    margin: 4px 0; /* Отступы сверху и снизу */
+}
+.price-original {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.price-discount {
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.discount-percent {
+    color: #d32f2f;
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+.cart-item button {
+    padding: 8px 16px; /* Внутренние отступы кнопки */
+    border: none; /* Убираем границу */
+    background-color: gray; /* Цвет кнопки */
+    color: #fff; /* Цвет текста */
+    border-radius: 4px; /* Закругление углов кнопки */
+    cursor: pointer; /* Указатель на кнопку */
+    transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+.order-form {
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.order-form h2 {
+    margin-top: 0;
+}
+
+.order-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-section {
+    display: flex;
+    gap: 20px;
+}
+
+.left-fields,
+.right-fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Увеличение ширины текстовых полей */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+    width: 98%; /* Занимают всю ширину родительского контейнера */
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Увеличение текстовой области */
+textarea {
+    resize: none;
+    height: 70px;
+    width: 30%;
+}
+
+.form-button{
+    text-align: center;
+}
+
+/* Кнопки */
+.form-buttons {
+    display: flex;
+    gap: 30px;
+    width: 100%; /* Кнопки тоже занимают больше места */
+}
+.total-cost-container {
+    font-family: Arial, sans-serif;
+    margin-bottom: 15px;
+}
+
+.total-cost {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.delivery-cost {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+
+button {
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: auto;
+}
+
+/* Медиазапросы для мобильных устройств */
+
+/* Для экранов до 768px (например, планшеты) */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    header .logo img {
+        width: 50%;
+    }
+
+    header .icons a {
+        font-size: 1.2em;
+    }
+
+    .notifications {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .notification-message {
+        max-width: 100%;
+        margin-right: 0;
+        text-overflow: unset;
+        white-space: normal;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .cart-items2 h2 {
+        font-size: 1.5rem;
+    }
+
+    .cart-items {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cart-item {
+        flex: 1 1 100%; /* Карточки занимают всю ширину */
+        margin-bottom: 15px;
+    }
+
+    .cart-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .cart-item p {
+        font-size: 0.9rem;
+    }
+
+    .order-form {
+        padding: 15px;
+    }
+
+    .form-section {
+        flex-direction: column;
+    }
+
+    .left-fields,
+    .right-fields {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+    }
+
+    textarea {
+        height: 100px;
+        width: 100%;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .total-cost-container {
+        font-size: 16px;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
+
+/* Для экранов до 480px (например, мобильные телефоны) */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    header .logo img {
+        width: 40%;
+    }
+
+    header .icons a {
+        font-size: 1.2em;
+        margin-left: 5px;
+    }
+
+    .notifications {
+        width: 100%;
+        padding: 8px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .notification-message {
+        text-overflow: unset;
+        white-space: normal;
+        max-width: 100%;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .cart-items2 h2 {
+        font-size: 1.2rem;
+    }
+
+    .cart-items {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .cart-item {
+        flex: 1 1 100%; /* Карточки занимают всю ширину */
+        margin-bottom: 12px;
+    }
+
+    .cart-item h3 {
+        font-size: 1rem;
+    }
+
+    .cart-item p {
+        font-size: 0.9rem;
+    }
+
+    .order-form {
+        padding: 10px;
+    }
+
+    .form-section {
+        flex-direction: column;
+    }
+
+    .left-fields,
+    .right-fields {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .total-cost-container {
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+}
+
+
