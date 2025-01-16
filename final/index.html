@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://hh.ru/employer-logo/6082962.jpeg" alt="logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Введите запрос">
+            <button>Найти</button>
+        </div>
+        <div class="icons">
+            <a href="cor.html">🛒</a>
+            <a href="profile.html">👤</a>
+        </div>
+    </header>
+
+    <div class="notifications" id="notifications" style="display: none;">
+        <!-- Всплывающие уведомления -->
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <form id="categoryForm">
+                <!-- Здесь категории будут подгружаться -->
+                <div id="categoryContainer">
+                    <h3>Категории</h3>
+                </div>
+                <div class="categori">
+                <label><input type="checkbox" id="checkbox1" value="Фильтр 1"> Бытовая химия</label>
+    <label><input type="checkbox" id="checkbox2" value="Фильтр 2"> Еда</label>
+    <label><input type="checkbox" id="checkbox3" value="Фильтр 3"> Спорт </label>
+    <label><input type="checkbox" id="checkbox4" value="Фильтр 4"> Товары для дома</label>
+    <label><input type="checkbox" id="checkbox5" value="Фильтр 5"> Электроника</label>
+                </div>
+                <h3>Стоимость</h3>
+                <label>От: <input type="number" min="0" value="100" id="minPrice"></label>
+                <label>До: <input type="number" min="0" value="5000" id="maxPrice"></label>
+        
+                <label><input type="checkbox" value="Только товары со скидками" id="discountOnly"> Только товары со скидками</label>
+        
+                <button type="submit">Применить</button>
+            </form>
+        </aside>
+
+        <main class="catalog">
+            <div class="header">
+                <h2>Каталог</h2>
+                <select id="sortSelect">
+                    <option value="rating-desc">По убыванию рейтинга</option>
+                    <option value="rating-asc">По возрастанию рейтинга</option>
+                    <option value="price-desc">По убыванию цены</option>
+                    <option value="price-asc">По возрастанию цены</option>
+                </select>
+            </div>
+
+            <!-- Контейнер для товаров -->
+            <div id="productGrid" class="goods-container">
+                <!-- Товары будут загружаться сюда -->
+            </div>
+
+            <!-- Кнопка для подгрузки товаров -->
+            <button id="loadMoreBtn" style="margin-top: 10px;">Загрузить ещё</button>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Donked | Контакты: info@shop.com</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
+
+header .logo {
+    width: 120px;
+    height: 60px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+}
+header .logo img{
+    width: 70%;
+    height: 70%;
+}
+
+header .icons a {
+    margin-left: 10px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+}
+
+/* Основной стиль уведомления */
+.notification {
+    position: relative; /* Устанавливаем контекст позиционирования для кнопки */
+    display: none; /* Расположение элементов в строку */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    justify-content: space-between; /* Отступы между текстом и кнопкой */
+    padding: 10px 15px; /* Внутренние отступы */
+    background-color: aquamarine; /* Цвет фона */
+    border: 1px solid black; /* Цвет рамки */
+    border-radius: 5px; /* Закруглённые углы */
+    width:80%; /* Ограничение по ширине */
+    box-sizing: border-box; /* Учитываем padding в ширину */
+    margin: 10px auto; /* Центрирование на странице */
+    flex-wrap: nowrap;
+}
+
+
+/* Текст уведомления */
+.notification-message {
+    flex-grow: 1; /* Текст растягивается, занимая всё доступное пространство */
+    margin-right: 10px; /* Отступ от кнопки */
+    overflow: hidden; /* Прячем лишний текст, если он слишком длинный */
+    white-space: nowrap; /* Убираем перенос строки */
+    text-overflow: ellipsis; /* Добавляем троеточие для длинного текста */
+    max-width: calc(100% - 200px); /* Учитывайте ширину кнопки */
+}
+
+/* Кнопка закрытия уведомления */
+.close-btn1 {
+    position: absolute; /* Кнопка будет позиционироваться внутри уведомления */
+    right: 10px;
+    background: none; /* Убираем фон */
+    border: none; /* Убираем границы */
+    font-size: 18px; /* Размер шрифта */
+    cursor: pointer; /* Указываем, что кнопка кликабельна */
+    color: #721c24; /* Цвет текста кнопки */
+    padding: 5px; /* Отступ */
+    line-height: 1; /* Высота строки */
+}
+
+
+.container {
+    flex: 1;
+    padding: 20px;
+}
+
+.orders-content {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.orders-table th, .orders-table td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Общие стили для модальных окон */
+/* Общие стили для модальных окон */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 10000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Стили для кнопки закрытия */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: inherit;
+    position: fixed;  /* Устанавливаем абсолютное позиционирование */
+    top: 10px;  /* Располагаем сверху */
+    right: 10px; /* И справа */
+}
+
+/* Стили для контента модального окна */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Модальное окно удаления */
+#delete-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Кнопки в модальных окнах */
+button {
+    padding: 10px 20px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Кнопки подтверждения в модальном окне */
+#delete-modal button#confirm-delete-btn {
+    background-color: gray; /* Красный для удаления */
+    color: white;
+}
+
+#delete-modal button.cancel-btn {
+    background-color: gray; /* Синий для отмены */
+    color: white;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: auto;
+}
+/* Подсказки (tooltip) */
+td[title] {
+    position: relative;
+    cursor: pointer;
+}
+
+td[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 50%;
+    bottom: 120%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Медиазапросы для мобильных устройств */
+
+/* Для экранов до 768px (планшеты и крупные мобильные устройства) */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px; /* Добавим немного отступов по бокам */
+    }
+
+    header {
+        flex-direction: column; /* Логотип и иконки друг под другом */
+        align-items: center; /* Выравнивание по центру */
+        padding: 10px;
+    }
+
+    header .logo img {
+        width: 50%; /* Уменьшаем логотип */
+    }
+
+    header .icons a {
+        font-size: 1.2em; /* Уменьшаем размер иконок */
+        margin-left: 5px;
+    }
+
+    .notification {
+        width: 100%; /* Уведомления должны занимать всю ширину */
+        padding: 10px;
+        margin: 10px 0;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .notification-message {
+        max-width: 100%; /* Отключаем ограничение по ширине */
+        margin-right: 0;
+        white-space: normal;
+        text-overflow: unset;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .orders-content {
+        padding: 10px;
+    }
+
+    .orders-table {
+        font-size: 14px; /* Уменьшаем размер шрифта для таблицы */
+        overflow-x: auto; /* Если таблица будет слишком широкой, она будет прокручиваться по горизонтали */
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 8px; /* Уменьшаем отступы в ячейках */
+    }
+
+    .modal {
+        width: 90%; /* Модальное окно теперь будет занимать 90% ширины */
+        padding: 15px;
+    }
+
+    .modal-content {
+        gap: 15px;
+    }
+
+    /* Кнопки в модальных окнах */
+    button {
+        padding: 8px 16px;
+        font-size: 14px; /* Уменьшаем размер шрифта на кнопках */
+    }
+
+    .close-btn {
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+
+    /* Подсказки (tooltip) */
+    td[title]:hover::after {
+        font-size: 0.8em; /* Уменьшаем размер текста подсказки */
+        padding: 5px;
+    }
+}
+
+/* Для экранов до 480px (мобильные устройства) */
+@media (max-width: 480px) {
+    body {
+        padding: 0 5px; /* Еще меньше отступы */
+    }
+
+    header {
+        padding: 10px;
+        text-align: center; /* Логотип и иконки выровнаны по центру */
+    }
+
+    header .logo img {
+        width: 40%; /* Логотип ещё меньше */
+    }
+
+    header .icons a {
+        font-size: 1.1em; /* Уменьшаем размер иконок */
+        margin-left: 5px;
+    }
+
+    .notification {
+        padding: 8px;
+        margin: 8px 0;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .notification-message {
+        max-width: 100%;
+        margin-right: 0;
+        text-overflow: unset;
+        white-space: normal;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .orders-content {
+        padding: 10px;
+    }
+
+    .orders-table {
+        font-size: 12px; /* Размер шрифта для таблицы уменьшен */
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 6px; /* Уменьшаем отступы в таблице */
+    }
+
+    .modal {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .modal-content {
+        gap: 10px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .close-btn {
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+
+    /* Подсказки (tooltip) */
+    td[title]:hover::after {
+        font-size: 0.7em; /* Еще меньше размер текста подсказки */
+        padding: 4px;
+    }
+}
+/* Для экранов до 500px (мобильные устройства с очень маленькими экранами) */
+@media (max-width: 500px) {
+    .orders-table {
+        font-size: 12px; /* Уменьшаем размер шрифта для таблицы */
+        width: 100%; /* Таблица будет занимать всю ширину */
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        display: block; /* Делаем таблицу блочным элементом для прокрутки */
+        white-space: nowrap; /* Отключаем перенос строк в ячейках */
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 6px; /* Уменьшаем отступы в таблице */
+        text-align: left; /* Выравнивание текста в ячейках */
+    }
+
+    .modal {
+        width: 90%; /* Модальные окна остаются маленькими */
+        padding: 10px;
+    }
+
+    .notification {
+        width: 100%; /* Уведомления занимают всю ширину */
+        padding: 8px;
+    }
+    
+    .notification-message {
+        white-space: normal; /* Текст в уведомлениях будет переноситься */
+    }
+
+    footer {
+        padding: 10px;
+    }
+}

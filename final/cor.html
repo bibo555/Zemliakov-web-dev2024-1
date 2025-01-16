@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="cor.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="https://hh.ru/employer-logo/6082962.jpeg" alt="logo"></div>
+        <div class="icons">
+            <a href="index.html">🏠</a>
+            <a href="profile.html">👤</a>
+        </div>
+    </header>
+
+    <div class="notifications" id="notifications" style="display: none;">
+        <span class="close-btn" id="closeNotification">&times;</span>
+        <p id="notificationMessage"></p>
+    </div>
+    
+    <div class="cart-items2">
+        <h2>Корзина</h2>
+        
+    </div>
+
+    <div class="container">
+        <main class="cart-content">
+            <div class="cart-items">
+                <h3>Корзина</h3>
+                
+            </div>
+
+            <div class="order-form">
+                <h2>Оформление заказа</h2>
+                <form id="orderForm">
+                    <div class="form-section">
+                        <div class="left-fields">
+                            <label>Имя: <input type="text" name="full_name" placeholder="Иванов Иван"></label>
+                            <label>Номер телефона: <input type="text" name="phone" placeholder="+74952230523"></label>
+                            <label>Email: <input type="email" name="email" placeholder="example@mospolytech.ru"></label>
+                            <label><input type="checkbox" name="subscribe"> Подписаться на рассылку</label>
+                            <label>Комментарий:</label>
+                            <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
+                        </div>
+                        <div class="right-fields">
+                            <label>Адрес доставки: <input type="text" name="address" placeholder="ул. Большая Семёновская, 38"></label>
+                            <label>Дата доставки: <input type="date" name="delivery_date"></label>
+                            <label>Временной интервал доставки: 
+                                <select name="delivery_interval">
+                                    <option value="08:00-12:00">08:00-12:00</option>
+                                    <option value="12:00-14:00">12:00-14:00</option>
+                                    <option value="14:00-18:00">14:00-18:00</option>
+                                    <option value="18:00-22:00">18:00-22:00</option>
+                                </select>
+                            </label>
+                            <p class="total-cost">Итоговая стоимость: 0₽</p>
+                            <div class="form-buttons">
+                                <button type="reset">Сбросить</button>
+                                <button type="submit">Оформить</button>
+                            </div>
+                        </div>
+                    </div>    
+                </form>
+                
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Donked | Контакты: info@company.com</p>
+    </footer>
+    <script src="cor.js"></script>
+</body>
+</html>
