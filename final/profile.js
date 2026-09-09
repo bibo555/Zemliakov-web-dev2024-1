@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    await fetchProducts(); // Ждём загрузки товаров
+    await fetchProducts(); 
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
-    displayOrders(orders); // Теперь товары должны быть загружены
+    displayOrders(orders); 
 });
 
 
@@ -12,14 +12,14 @@ async function fetchOrdersFromServer() {
 
         const rawOrders = await response.json();
 
-        // Преобразование данных с расчетом стоимости
+        
         const orders = rawOrders.map(order => {
-            let totalCost = 0;  // Начальная стоимость заказа
+            let totalCost = 0;  
 
             const items = order.good_ids.map(id => {
                 const product = productsData.find(p => p.id === id);
-                const price = product ? (product.discountPrice || product.price) : 0; // Берём цену со скидкой
-                totalCost += price; // Считаем сумму заказа
+                const price = product ? (product.discountPrice || product.price) : 0; 
+                totalCost += price;
                 return { id, quantity: 1, price };
             });
 
@@ -47,10 +47,10 @@ async function fetchOrdersFromServer() {
     }
 }
 
-// Глобальная переменная для хранения данных о продуктах
+
 let productsData = [];
 
-// Функция загрузки товаров
+
 async function fetchProducts() {
     try {
         const response = await fetch(
@@ -88,7 +88,6 @@ async function fetchProducts() {
     }
 }
 
-// Форматирование данных о товарах заказа
 function getOrderItemsDetails(orderItems) {
     if (!Array.isArray(orderItems) || orderItems.length === 0) {
         return "Товары отсутствуют";
@@ -106,7 +105,6 @@ function getOrderItemsDetails(orderItems) {
     }).join(", ");
 }
 
-// Отображение заказов с учётом данных о продуктах
 function displayOrders(orders) {
     const tbody = document.querySelector(".orders-table tbody");
     tbody.innerHTML = "";
@@ -137,7 +135,6 @@ function displayOrders(orders) {
 
 
 
-// Показ уведомления
 function displayNotification(message, type = 'info') {
     const notifications = document.getElementById('notifications');
     notifications.textContent = message;
@@ -149,42 +146,15 @@ function displayNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Загрузка заказов при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     fetchOrdersFromServer();
 });
 
 
-// Отображение заказов в таблице
-// function displayOrders(orders) {
-//     const tbody = document.querySelector(".orders-table tbody");
-//     tbody.innerHTML = "";
-
-//     orders.forEach((order, index) => {
-//         const itemsText = Array.isArray(order.items)
-//             ? order.items.map(item => `${item.name || 'Неизвестный товар'} (${item.quantity || 0} шт.)`).join(", ")
-//             : "Товары отсутствуют";
-
-//         const row = document.createElement("tr");
-//         row.innerHTML = `
-//             <td>${index + 1}</td>
-//             <td>${formatDate(order.orderDate)}</td>
-//             <td>${itemsText}</td>
-//             <td>${order.totalCost || '0'} ₽</td>
-//             <td>${formatDate(order.deliveryDate)} ${order.deliveryTime || '—'}</td>
-//             <td>
-//                 <button class="view-btn" data-index="${index}">👁️</button>
-//                 <button class="edit-btn" data-index="${index}">✏️</button>
-//                 <button class="delete-btn" data-index="${index}">🗑️</button>
-//             </td>
-//         `;
-//         tbody.appendChild(row);
-//     });
-// }
 
 
 
-// Форматирование даты
+
 function formatDate(date) {
     if (!date) return "—"; // Если дата отсутствует
     const parsedDate = new Date(date);
@@ -234,13 +204,9 @@ async function fetchOrderDetails(orderId) {
     }
 }
 
-// Функции модальных окон
-// Функция отображения модального окна для просмотра заказа
-// Функция отображения модального окна для просмотра заказа
 function showViewModal(order) {
     const modal = document.getElementById("view-modal");
     
-    // Отображаем основные данные заказа
     document.getElementById("view-order-date").textContent = formatDate(order.created_at);
     document.getElementById("view-order-name").textContent = order.full_name || "—";
     document.getElementById("view-order-phone").textContent = order.phone || "—";
@@ -249,7 +215,6 @@ function showViewModal(order) {
     document.getElementById("view-order-delivery-date").textContent = formatDate(order.delivery_date);
     document.getElementById("view-order-delivery-time").textContent = order.delivery_interval || "—";
 
-    // Отображаем товары (названия и количество)
     const itemsText = order.good_ids.map(id => {
         const product = productsData.find(p => p.id === id);
         if (product) {
@@ -260,7 +225,6 @@ function showViewModal(order) {
     }).join(", ");
     document.getElementById("view-order-items").textContent = itemsText;
 
-    // Рассчитываем итоговую стоимость, если она не передана
     let totalCost = order.totalCost || 0;
     if (!totalCost) {
         totalCost = order.good_ids.reduce((sum, id) => {
@@ -272,13 +236,10 @@ function showViewModal(order) {
         }, 0);
     }
 
-    // Отображаем итоговую стоимость
     document.getElementById("view-order-cost").textContent = `${totalCost} ₽`;
 
-    // Отображаем комментарий
     document.getElementById("view-order-comment").textContent = order.comment || "Комментарий отсутствует";
 
-    // Показываем модальное окно
     modal.style.display = "block";
 }
 
@@ -305,7 +266,6 @@ async function updateOrderOnServer(orderId, updatedOrderData) {
         console.log(updatedOrder);
         console.log("Заказ успешно обновлен:", updatedOrder);
 
-        // Уведомление об успешном обновлении заказа
         displayNotification('Заказ успешно обновлен!', 'success');
         return updatedOrder;
     } catch (error) {
@@ -316,14 +276,10 @@ async function updateOrderOnServer(orderId, updatedOrderData) {
 }
 
 console.log(document.getElementById("edit-order-date"));
-// Показ модального окна для редактирования
-// Функция для отображения данных в окне редактирования
 function showEditModal(order) {
     const modal = document.getElementById("edit-modal");
 
-    // Устанавливаем id заказа в скрытое поле формы
     document.getElementById("edit-order-id").value = order.id;
-    // Отображаем поля данных заказа в форме
     document.getElementById("edit-order-date").value = order.delivery_date || ""; // Дата доставки
     document.getElementById("edit-order-name").value = order.full_name || ""; // Имя
     document.getElementById("edit-order-phone").value = order.phone || ""; // Телефон
@@ -331,11 +287,9 @@ function showEditModal(order) {
     document.getElementById("edit-order-address").value = order.delivery_address || ""; // Адрес доставки
     document.getElementById("comment").value = order.comment || ""; // Комментарий
 
-    // Заполнение выпадающего списка для выбора времени доставки
     const timeSelect = document.querySelector("select[name='delivery_interval']");
     const timeOptions = ["08:00-12:00", "12:00-14:00", "14:00-18:00", "18:00-22:00"];
 
-    // Очистка текущих опций и добавление новых
     timeSelect.innerHTML = "";
     timeOptions.forEach(timeSlot => {
         const option = document.createElement("option");
@@ -396,16 +350,11 @@ function displayNotification(message, type = 'info') {
     const messageElement = document.getElementById('notification-message');
     const closeButton = document.getElementById('close-notification');
 
-    // Устанавливаем текст уведомления
+   
     messageElement.textContent = message;
 
-    // Применяем класс для типа уведомления (info, success, error)
-  
-
-    // Показываем уведомление
     notifications.style.display = 'flex';  // Убедимся, что оно отображается как flex
 
-    // Показываем кнопку закрытия
     closeButton.style.display = 'inline-block';  // Кнопка должна быть видна
 
     
@@ -434,7 +383,6 @@ async function deleteOrderFromServer(orderId) {
         const result = await response.json();  // Ответ от сервера (можно использовать для уведомлений)
         console.log("Заказ успешно удален:", result);
 
-        // Уведомление об успешном удалении заказа
         displayNotification('Заказ успешно удален!', 'success');
         return result;
     } catch (error) {
@@ -451,25 +399,20 @@ document.getElementById("confirm-delete-btn").addEventListener("click", async ()
     const index = document.getElementById("delete-modal").dataset.index;
     const orderId = orders[index].id;  // Получаем ID заказа
 
-    // Удаляем заказ с сервера
     const deletedOrder = await deleteOrderFromServer(orderId);
     
     if (deletedOrder) {
-        // Если заказ был удален с сервера, удаляем его и из localStorage
         orders.splice(index, 1);
         localStorage.setItem("orders", JSON.stringify(orders));
 
-        // Обновляем отображение таблицы заказов
         displayOrders(orders);
 
-        // Закрываем модальное окно
         closeModals();
     }
 });
 
 
 
-// Закрытие модальных окон
 document.querySelectorAll(".close-btn").forEach((btn) => {
     btn.addEventListener("click", closeModals);
 });
@@ -482,7 +425,6 @@ function showNotification(message) {
     closeButton.style.display = "inline-block";
 }
 
-// Закрытие уведомления
 closeButton.addEventListener("click", () => {
     notification.style.display = "none";
 });
