@@ -6,7 +6,6 @@ const itemsPerPage = 8; // Количество товаров на страни
 
 
 
-// Загрузка следующей страницы
 function loadMoreProducts() {
     const start = (currentPage - 1) * itemsPerPage;
     const end = currentPage * itemsPerPage;
@@ -15,13 +14,11 @@ function loadMoreProducts() {
     renderProducts(productsToRender);
     currentPage++;
 
-    // Скрываем кнопку, если все товары загружены
     if (end >= productsData.length) {
         document.querySelector("button[onclick='loadMoreProducts()']").style.display = "none";
     }
 }
 
-// Фильтрация и сортировка
 function applyFilters() {
     const selectedCategories = Array.from(document.querySelectorAll(".sidebar input[type='checkbox']:checked")).map(input => input.parentElement.textContent.trim());
     const priceFrom = parseInt(document.querySelector(".sidebar input[type='number'][value='100']").value) || 0;
@@ -34,7 +31,6 @@ function applyFilters() {
     renderProducts(filteredProducts.slice(0, itemsPerPage));
     currentPage = 2;
 
-    // Показать или скрыть кнопку "Загрузить ещё"
     const loadMoreButton = document.querySelector("button[onclick='loadMoreProducts()']");
     if (filteredProducts.length > itemsPerPage) {
         loadMoreButton.style.display = "block";
@@ -43,7 +39,7 @@ function applyFilters() {
     }
 }
 
-// События
+
 document.querySelector(".sidebar").addEventListener("input", applyFilters);
 document.querySelector(".catalog select").addEventListener("change", applyFilters);
 
@@ -114,7 +110,6 @@ async function fetchProducts() {
     }
 }
 
-// Функция для рендеринга товаров
 function renderProducts() {
     const productGrid = document.getElementById("productGrid");
     if (!productGrid) {
@@ -174,13 +169,11 @@ function sortProducts() {
         products.sort((a, b) => a.rating - b.rating);
     }
 
-    // Перерисовываем товары
     productGrid.innerHTML = "";
     displayedProducts = 0;
     renderProducts();
 }
 
-// Функция инициализации каталога
 async function initCatalog() {
     products = await fetchProducts(); // Загружаем данные
     renderProducts(); // Отображаем первые товары
@@ -192,7 +185,6 @@ document.addEventListener('click', (event) => {
     if (event.target.classList.contains('add')) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
     
-    // Найти товар по ID
     const goodElement = event.target.closest('.product-card');
     if (goodElement) {
         const goodId = parseInt(goodElement.getAttribute('good-id'), 10);
@@ -214,21 +206,17 @@ document.addEventListener('click', (event) => {
 function showNotification(message) {
     const notificationContainer = document.getElementById('notifications');
     
-    // Создаем новый элемент для уведомления
     const notification = document.createElement('div');
     notification.className = 'notification';
     
-    // Вставляем сообщение и кнопку закрытия
     notification.innerHTML = `
         <span>${message}</span>
         <button class="close-btn">✖</button>
     `;
 
-    // Добавляем уведомление в контейнер
     notificationContainer.appendChild(notification);
     notificationContainer.style.display = 'block';
 
-    // Находим кнопку закрытия внутри уведомления и добавляем обработчик события
     const closeButton = notification.querySelector('.close-btn');
     closeButton.addEventListener('click', () => {
         notification.remove();
@@ -238,7 +226,6 @@ function showNotification(message) {
     });
 }
 
-// Добавляем контейнер для подсказок под строкой поиска
 const searchInput = document.getElementById("searchInput");
 const suggestionsBox = document.createElement("div");
 suggestionsBox.id = "suggestionsBox";
@@ -250,7 +237,6 @@ suggestionsBox.style.display = "none";
 suggestionsBox.style.zIndex = "1000";
 document.querySelector(".search-bar").appendChild(suggestionsBox);
 
-// Обработчик ввода в строку поиска
 searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
@@ -258,16 +244,13 @@ searchInput.addEventListener("input", () => {
         return;
     }
 
-    // Фильтруем товары по запросу
     const matchingProducts = products.filter(product =>
         product.name.toLowerCase().includes(query)
     );
 
-    // Показываем подсказки
     showSuggestions(matchingProducts, query);
 });
 
-// Обработчик ввода в строку поиска
 searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
@@ -275,25 +258,20 @@ searchInput.addEventListener("input", () => {
         return;
     }
 
-    // Фильтруем товары по запросу
     const matchingProducts = products.filter(product =>
         product.name.toLowerCase().includes(query)
     );
 
-    // Показываем подсказки
     showSuggestions(matchingProducts, query);
 });
 
-// Обработчик нажатия кнопки поиска
 document.querySelector(".search-bar button").addEventListener("click", () => {
     const query = searchInput.value.toLowerCase().trim();
     if (query) {
-        searchProducts(query); // Выполняем поиск товаров
+        searchProducts(query); 
     }
 });
 
-// Функция для отображения подсказок
-// Функция для получения вариантов автодополнения
 async function fetchSuggestions(query) {
     try {
         const response = await fetch(
@@ -321,10 +299,10 @@ searchInput.addEventListener("input", async () => {
         return;
     }
 
-    // Получаем варианты автодополнения от сервера
+    
     const suggestions = await fetchSuggestions(query);
 
-    // Показываем подсказки
+    
     showSuggestions(suggestions, query);
 });
 
@@ -337,10 +315,8 @@ function showSuggestions(suggestions, query) {
         return;
     }
 
-    // Получаем размеры и позицию строки поиска
     const searchInputRect = searchInput.getBoundingClientRect();
 
-    // Устанавливаем позицию подсказок прямо под строкой поиска
     suggestionsBox.style.top = `${searchInputRect.bottom + window.scrollY}px`;
     suggestionsBox.style.left = `${searchInputRect.left + window.scrollX}px`;
     suggestionsBox.style.width = `${searchInputRect.width}px`;
@@ -362,8 +338,6 @@ function showSuggestions(suggestions, query) {
     suggestionsBox.style.display = "block";
 }
 
-// Обработчик нажатия кнопки поиска
-// Обработчик нажатия кнопки поиска
 async function searchProducts(query) {
     try {
         const response = await fetch(
@@ -398,9 +372,9 @@ async function searchProducts(query) {
         });
 
         displayedProducts = 0;
-        productGrid.innerHTML = ""; // Очищаем текущую сетку товаров
-        sortProducts(); // Сортировка по текущему значению
-        renderProducts(); // Перерисовка товаров
+        productGrid.innerHTML = ""; 
+        sortProducts(); 
+        renderProducts(); 
     } catch (error) {
         console.error('Ошибка при загрузке товаров:', error);
         productGrid.innerHTML = "<p>Произошла ошибка при загрузке товаров. Попробуйте позже.</p>";
@@ -409,11 +383,11 @@ async function searchProducts(query) {
 
 
 
-// Обработчик нажатия кнопки поиска
+
 document.querySelector(".search-bar button").addEventListener("click", () => {
     const query = searchInput.value.toLowerCase().trim();
     if (query) {
-        searchProducts(query); // Выполняем поиск товаров
+        searchProducts(query);
     }
 });
 
@@ -421,9 +395,9 @@ document.querySelector(".search-bar button").addEventListener("click", () => {
 
 
 
-// Обработчики событий
+
 loadMoreBtn.addEventListener("click", renderProducts);
 sortSelect.addEventListener("change", sortProducts);
 
-// Инициализация каталога
+
 initCatalog();
